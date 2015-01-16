@@ -24,10 +24,16 @@ boolean two=false;
 boolean three=false;
 boolean all=false;
 
-
+int ledPin =  13;      // the number of the LED pin
+int buttonPin = 8;
+int buttonState = 0;
 
 void setup() 
 {
+  pinMode(buttonPin, INPUT);
+  pinMode(7, OUTPUT);   //Magnet control pin
+  pinMode(ledPin, OUTPUT);
+  
   lcd.begin(16,2);
 
   pinMode(1,OUTPUT);
@@ -117,6 +123,23 @@ void loop() {
   
     lcd.setCursor(10, 0);
     lcd.print(int(serial[2]));
+  }
+  
+  
+  //button control for magnet 
+  buttonState = digitalRead(buttonPin);
+  
+  if (buttonState == HIGH) 
+  {     
+    // Magnet on:    
+    digitalWrite(7, HIGH);
+    digitalWrite(ledPin, HIGH);
+  } 
+  else 
+  {
+    // Magnet off:
+    digitalWrite(7, LOW);
+    digitalWrite(ledPin, LOW);
   }
   
   delay(50);
