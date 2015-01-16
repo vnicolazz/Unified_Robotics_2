@@ -16,8 +16,8 @@
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 
 Servo servo1; Servo servo2; Servo servo3;
-char serial[3];
-char serialOld[3];
+byte serial[3];
+byte serialOld[3];
 boolean firstTime=false;
 boolean one=false;
 boolean two=false;
@@ -62,20 +62,6 @@ void loop() {
     two=false;
     three=false;
   }
-  
-  if(serial[0] < 0)
-    serial[0] += 256;
-  if(serial[1] < 0)
-    serial[1] += 256;
-  if(serial[2] < 0)
-    serial[2] += 256;
-    
-  if(serialOld[0] < 0)
-    serialOld[0] += 256;
-  if(serialOld[1] < 0)
-    serialOld[1] += 256;
-  if(serialOld[2] < 0)
-    serialOld[2] += 256;
       
   while(!one||!two||!three)
   {    
@@ -120,15 +106,19 @@ void loop() {
   if(serial[2]==serialOld[2])
     three=true;
     
-  //lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(int(serial[0]));
+  if(one)
+  {
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(int(serial[0]));
   
-  lcd.setCursor(5, 0);
-  lcd.print(int(serial[1]));
+    lcd.setCursor(5, 0);
+    lcd.print(int(serial[1]));
   
-  lcd.setCursor(10, 0);
-  lcd.print(int(serial[2]));
+    lcd.setCursor(10, 0);
+    lcd.print(int(serial[2]));
+  }
+  
   delay(50);
   }
 }
