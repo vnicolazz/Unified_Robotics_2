@@ -50,10 +50,10 @@ void loop() {
   if(!firstTime)
   {
     serial[0]=70;
-    serial[1]=30;
+    serial[1]=40;
     serial[2]=120;
     serialOld[0]=70;
-    serialOld[1]=30;
+    serialOld[1]=40;
     serialOld[2]=120;
     servo1.write(serial[0]);
     servo2.write(serial[1]);
