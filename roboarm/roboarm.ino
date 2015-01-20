@@ -16,7 +16,7 @@
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 
 Servo servo1; Servo servo2; Servo servo3;
-byte serial[3];
+byte serial[4];
 byte serialOld[3];
 boolean firstTime=false;
 boolean one=false;
@@ -25,7 +25,7 @@ boolean three=false;
 boolean all=false;
 
 int ledPin =  13;      // the number of the LED pin
-int buttonPin = 8;
+int buttonPin = 7;
 int buttonState = 0;
 
 void setup() 
@@ -60,9 +60,10 @@ void loop() {
     servo3.write(serial[2]);
     firstTime=true;
   }
-  while(Serial.available()>2)
+  while(Serial.available()>3)
   {
-    for(int i=0;i<3;i++)
+
+    for(int i=0; i<4; i++)
       serial[i]=Serial.read();
     one=false;
     two=false;
@@ -127,18 +128,18 @@ void loop() {
   
   
   //button control for magnet 
-  buttonState = digitalRead(buttonPin);
+  //buttonState = digitalRead(buttonPin);
   
-  if (buttonState == HIGH) 
+  if (serial[3] == HIGH) 
   {     
     // Magnet on:    
-    digitalWrite(7, HIGH);
+    digitalWrite(8, HIGH);
     digitalWrite(ledPin, HIGH);
   } 
   else 
   {
     // Magnet off:
-    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
     digitalWrite(ledPin, LOW);
   }
   
