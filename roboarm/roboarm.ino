@@ -69,6 +69,12 @@ void loop() {
     two=false;
     three=false;
   }
+   
+//-----------------------This section accounts for innacuracies in the elbow and end servo potentiometers
+  serial[1] = map(serial[1], 0, 180, 20, 180);
+  
+  serial[2] = map(serial[2], 0, 180, 20, 180);//this might not be necessary, I haven't tested the end servo to see if it has the same limitations as the elbow servo
+//------------------------
       
   while(!one||!two||!three)
   {    
