@@ -1,13 +1,13 @@
 #include <FastIO.h>
 #include <I2CIO.h>
-#include <LCD.h>
+/*#include <LCD.h>
 #include <LiquidCrystal.h>
 #include <LiquidCrystal_I2C.h>
 #include <LiquidCrystal_I2C_ByVac.h>
 #include <LiquidCrystal_SR.h>
 #include <LiquidCrystal_SR1W.h>
 #include <LiquidCrystal_SR2W.h>
-#include <LiquidCrystal_SR3W.h>
+#include <LiquidCrystal_SR3W.h>*/
 
 #include<Wire.h>
 
@@ -73,7 +73,7 @@ void loop() {
 //-----------------------This section accounts for innacuracies in the elbow and end servo potentiometers
   serial[1] = map(serial[1], 0, 180, 20, 180);
   
-  serial[2] = map(serial[2], 0, 180, 20, 180);//this might not be necessary, I haven't tested the end servo to see if it has the same limitations as the elbow servo
+  serial[2] = map(serial[2], 0, 180, 20, 180);
 //------------------------
       
   while(!one||!two||!three)
@@ -119,7 +119,7 @@ void loop() {
   if(serial[2]==serialOld[2])
     three=true;
     
-  if(one)
+  /*if(one)
   {
     lcd.clear();
     lcd.setCursor(0,0);
@@ -130,7 +130,7 @@ void loop() {
   
     lcd.setCursor(10, 0);
     lcd.print(int(serial[2]));
-  }
+  }*/
   
   
   //button control for magnet 
